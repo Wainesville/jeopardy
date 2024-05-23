@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=M+PLUS+2:wght@100..900&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+    color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: Anton, sans-serif;
+}
+
+#game{
+    background-color: rgb(34, 34, 35);
+    display: flex;
+}
+
+.card{
+    width: 160px;
+    height: 120px;
+    background-color: blue;
+    border-left:3px ridge rgb(19,19,168);
+    border-right:3px ridge rgb(11,11,91);
+    border-top:3px ridge rgb(1,61,200);
+    border-bottom:3px ridge rgb(20,20,89);
+    text-align:center;
+    font-size: 100px;
+    margin: 5px;
+    padding: 10px;
+    line-height:120px;
+}
