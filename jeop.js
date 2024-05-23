@@ -52,7 +52,7 @@ async function getCategoryIds(id) {
 
         const genreTitle = document.createElement('div');
         genreTitle.classList.add('genre-title');
-        genreTitle.innerText = categories.title;
+        genreTitle.innerText = categories.title.toUpperCase();
 
         column.appendChild(genreTitle);
         game.append(column);
@@ -91,7 +91,9 @@ function flipCard(){
            this.style.fontSize = "15px";
            this.style.lineHeight = "15px";
 
+
            const textDisplay = document.createElement('div');
+           this.classList.add('question-card')
            textDisplay.classList.add('card-text');
            textDisplay.innerHTML = this.getAttribute('data-question');
            this.append(textDisplay);
@@ -102,6 +104,7 @@ function answerCard(){
     this.innerHTML = '';
     this.style.fontSize = '15px';
     this.style.lineHeight = '15px';
+    this.style.backgroundColor = "green";
     const textDisplay = document.createElement('div');
     textDisplay.classList.add('card-text');
     textDisplay.innerHTML = this.getAttribute('data-answer');
@@ -121,6 +124,33 @@ function fillBoard() {
           getCategoryIds(cat);
      }    
     }
+    
+
+    function shuffle(array) {
+        let currentIndex = array.length;
+      
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+      
+          // Pick a remaining element...
+          let randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+      
+          // And swap it with the current element.
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      }
+
+
+      shuffle(nums);
+      function getCats(){
+        const slicedArray = nums.slice(0,6);
+        cats.push(slicedArray);
+      }
+
+      getCats();
+      console.log(cats);
 
     // fillTable();
     

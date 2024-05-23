@@ -1,9 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=M+PLUS+2:wght@100..900&display=swap');
 
+.start{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+
 body{
     margin: 0;
     padding: 0;
-    background-color: rgb(0, 0, 0);
+    background-color:rgb(104, 101, 109) ;
     color: whitesmoke;
     display: flex;
     justify-content: center;
@@ -12,15 +19,34 @@ body{
     font-family: Anton, sans-serif;
 }
 
+
 #game{
-    background-color: rgb(34, 34, 35);
+    background-color: rgb(23, 23, 23);
     display: flex;
+}
+
+.genre-title{
+    background-color: rgb(172, 161, 161);
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+    font-size: 1.5rem;
+
+}
+
+.question-card{
+   display: flex;
+   justify-content: center;
+   align-items: center;
 }
 
 .card{
     width: 160px;
     height: 120px;
-    background-color: blue;
+    background-color:#115ff3;
     border-left:3px ridge rgb(19,19,168);
     border-right:3px ridge rgb(11,11,91);
     border-top:3px ridge rgb(1,61,200);
@@ -30,4 +56,11 @@ body{
     margin: 5px;
     padding: 10px;
     line-height:120px;
+}
+
+.cardText{
+    display:flex;
+    text-align: center;
+    justify-content: center;
+
 }
