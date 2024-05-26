@@ -4,7 +4,7 @@
     display:block;
     justify-content: center;
     text-align: center;
-    background-color: antiquewhite;
+    background-color: rgb(126, 125, 123);
     
 }
 
@@ -12,7 +12,7 @@
 body{
     margin: 0;
     padding: 0;
-    background-color:rgb(104, 101, 109) ;
+    background-color:#115ff3 ;
     color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
@@ -25,7 +25,7 @@ body{
 {
     position: fixed;
     inset: 0;
-    background-color:rgb(104, 101, 109);
+    background-color:#115ff3;
     z-index: 2;
     opacity: 1;
     transition: opacity 500ms ease;
@@ -38,9 +38,6 @@ body{
     border-radius: 50%;
     border: 50px dotted white;
     aspect-ratio: 1/1;
-    border-top-color: black;
-    border-left-color: rgb(120, 120, 120);
-    border-right-color: rgb(119, 119, 119);
     animation: spinner 1s linear infinite;
 }
 

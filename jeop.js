@@ -1,8 +1,10 @@
 const game = document.getElementById("game");
 const body = document.getElementById("body");
 const nums = [2,3,4,6,8,9,10,11,12,13,14,15,17,18]
-const categories = [];
+let categories = [];
 
+
+// setting startbutton and link to reset button to the DOM
 function startGame(){
     const start = document.createElement('button');
     start.classList.add('start');
@@ -15,15 +17,24 @@ function startGame(){
         start.parentNode.removeChild(start);
         const test = document.createElement('button');
         test.classList.add('start');
-        test.innerText="Play Again?";
+        test.innerText="Play Again";
         body.append(test);
-        test.addEventListener('click',loadingPage);
+        test.addEventListener('click',restartGame);
     };
 
 };
 
 startGame();
 
+function restartGame(){
+    game.innerHTML = '';
+    categories = [];
+    loadingPage();
+    getCats()
+}
+
+
+// build and fire off spinner and div 'loading' screen
 function loadingPage(){
 
   const loading = document.createElement('div');
@@ -35,15 +46,44 @@ function loadingPage(){
         loading.style.opacity = 0;
         setTimeout(function()
     {loading.style.display="none"},1000);
-    },2000
+    },1000
   );
   
   getCats();
 
 }
 
+// function to shuffle an array randomly
+
+function shuffle(array) {
+    let currentIndex = array.length;
+ 
+    while (currentIndex != 0) {
+  
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+    }
+  }
 
 
+//   selecting random numbers from array of catagories
+function getCats(){
+    game.innerHTML='';
+   shuffle(nums);
+   const cats = nums.slice(0,6);
+ for (let i =0; i<cats.length; i++){
+   const cat = cats[i];
+    getCategoryIds(cat);
+}   
+
+
+} 
+
+
+// using random number from array to pull data from API, then uses that data
 async function getCategoryIds(id) {
    
     const url = `https://rithm-jeopardy.herokuapp.com/api/category?id=${id}`; 
@@ -62,7 +102,7 @@ async function getCategoryIds(id) {
 
     getQuestions();
     
-   
+//    using data to create the game board and fill attributes with game data
     function addCategory(categories){
         
         const column = document.createElement('div');
@@ -97,6 +137,8 @@ async function getCategoryIds(id) {
     
 }
 
+
+// action for showing hidding question
 function flipCard(){
            this.innerHTML = '';
            this.style.fontSize = "15px";
@@ -110,7 +152,7 @@ function flipCard(){
            this.append(textDisplay);
            this.addEventListener('click', answerCard)
 }
-
+// action for showing hidden answer
 function answerCard(){
     this.innerHTML = '';
     this.style.fontSize = '15px';
@@ -126,39 +168,15 @@ function answerCard(){
 
 
 
-function fillBoard() {}
+
 
     
 
-    function shuffle(array) {
-        let currentIndex = array.length;
-      
-        // While there remain elements to shuffle...
-        while (currentIndex != 0) {
-      
-          // Pick a remaining element...
-          let randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex--;
-      
-          // And swap it with the current element.
-          [array[currentIndex], array[randomIndex]] = [
-            array[randomIndex], array[currentIndex]];
-        }
-      }
+  
 
 
       
-      function getCats(){
-         game.innerHTML='';
-        shuffle(nums);
-        const cats = nums.slice(0,6);
-      for (let i =0; i<cats.length; i++){
-        const cat = cats[i];
-         getCategoryIds(cat);
-    }   
 
-    
-} 
    
 
     
