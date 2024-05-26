@@ -1,52 +1,70 @@
 const game = document.getElementById("game");
+const body = document.getElementById("body");
 const nums = [2,3,4,6,8,9,10,11,12,13,14,15,17,18]
 const categories = [];
-const qArray = [];
-
 
 function startGame(){
     const start = document.createElement('button');
     start.classList.add('start');
     start.innerText = "Start Game"
-    game.append(start)
+    body.appendChild(start)
+    start.addEventListener('click', loadingPage);
+    start.addEventListener('click', test);
 
-    start.addEventListener('click', fillBoard);
-}
+    function test() {
+        start.parentNode.removeChild(start);
+        const test = document.createElement('button');
+        test.classList.add('start');
+        test.innerText="Play Again?";
+        body.append(test);
+        test.addEventListener('click',loadingPage);
+    };
+
+};
 
 startGame();
 
+function loadingPage(){
 
+  const loading = document.createElement('div');
+  loading.classList.add('loading');
+  body.append(loading)
+
+  setTimeout(function()
+    {
+        loading.style.opacity = 0;
+        setTimeout(function()
+    {loading.style.display="none"},1000);
+    },2000
+  );
+  
+  getCats();
+
+}
 
 
 
 async function getCategoryIds(id) {
+   
     const url = `https://rithm-jeopardy.herokuapp.com/api/category?id=${id}`; 
     const res = await fetch(url);
     const data = await res.json();
     function getQuestions(){
-       qArray.push(data.clues);
         
     let obj ={
         title : (data.title),
         clue: (data.clues),
-        question: (qArray),
-        showing: null
     }
-    console.log(data.clues)
+
+    console.log();
     categories.push(obj);
-
-
-    
-
-    }
+   }
 
     getQuestions();
-    // const qArray = JSON.stringify(data.clues)
-
     
-
-    
+   
     function addCategory(categories){
+        
         const column = document.createElement('div');
         column.classList.add('genre-column');
 
@@ -56,33 +74,26 @@ async function getCategoryIds(id) {
 
         column.appendChild(genreTitle);
         game.append(column);
-    
-        data.clues.forEach(question =>{
+
+        categories.clue.forEach(nums =>{
             const card = document.createElement('div');
             card.classList.add('card');
             column.append(card);
-
-           
             card.innerHTML = "?";
-            console.log(data.clues[0]);
+                    
+            card.setAttribute('data-question', nums.question);
 
-                if(data.clues === data.clues){
-                    card.setAttribute('data-question', question.question);
-                    card.setAttribute('data-answer', question.answer);
-                }
-                else{
-                    return
-                };
-            
-                card.addEventListener('click', flipCard)
-            }) 
-    }
+            card.setAttribute('data-answer', nums.answer);
 
+            card.addEventListener('click', flipCard)
+        });
+   
+}
     if( categories.length === 6 ){
     categories.forEach(category => addCategory(category))
     }
 
-
+    
     
 }
 
@@ -115,15 +126,8 @@ function answerCard(){
 
 
 
-function fillBoard() {
+function fillBoard() {}
 
-
-    for (let i =0; i<=5; i++){
-          cat = nums[Math.floor(Math.random()*nums.length)];
-    
-          getCategoryIds(cat);
-     }    
-    }
     
 
     function shuffle(array) {
@@ -143,16 +147,23 @@ function fillBoard() {
       }
 
 
-      shuffle(nums);
+      
       function getCats(){
-        const slicedArray = nums.slice(0,6);
-        cats.push(slicedArray);
-      }
+         game.innerHTML='';
+        shuffle(nums);
+        const cats = nums.slice(0,6);
+      for (let i =0; i<cats.length; i++){
+        const cat = cats[i];
+         getCategoryIds(cat);
+    }   
 
-      getCats();
-      console.log(cats);
+    
+} 
+   
 
-    // fillTable();
+    
+
+
     
 
 

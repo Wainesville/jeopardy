@@ -1,9 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Anton&family=M+PLUS+2:wght@100..900&display=swap');
 
 .start{
-    display: flex;
+    display:block;
     justify-content: center;
     text-align: center;
+    background-color: antiquewhite;
+    
 }
 
 
@@ -11,7 +13,7 @@ body{
     margin: 0;
     padding: 0;
     background-color:rgb(104, 101, 109) ;
-    color: whitesmoke;
+    color: rgb(255, 255, 255);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +21,40 @@ body{
     font-family: Anton, sans-serif;
 }
 
+.loading
+{
+    position: fixed;
+    inset: 0;
+    background-color:rgb(104, 101, 109);
+    z-index: 2;
+    opacity: 1;
+    transition: opacity 500ms ease;
+}
+
+.loading::after{
+    content:"";
+    position: absolute;
+    inset: 40%;
+    border-radius: 50%;
+    border: 50px dotted white;
+    aspect-ratio: 1/1;
+    border-top-color: black;
+    border-left-color: rgb(120, 120, 120);
+    border-right-color: rgb(119, 119, 119);
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner
+{
+    from
+    {
+        transform: rotate(0deg);
+    }
+    to
+    {
+        transform: rotate(360deg);
+    }
+}
 
 #game{
     background-color: rgb(23, 23, 23);
@@ -33,7 +69,7 @@ body{
     justify-content: center;
     align-items: center;
     height: 4rem;
-    font-size: 1.5rem;
+    font-size: 1rem;
 
 }
 
@@ -47,6 +83,7 @@ body{
     width: 160px;
     height: 120px;
     background-color:#115ff3;
+    color:white;
     border-left:3px ridge rgb(19,19,168);
     border-right:3px ridge rgb(11,11,91);
     border-top:3px ridge rgb(1,61,200);
